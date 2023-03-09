@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Blood donor List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Blood Type</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% donor.forEach(function(donor) { %> 
+                <tr>
+                    <td><%= donor.name %></td>
+                    <td><%= donor.age %></td>
+                    <td><%= donor.bloodType %></td>
+                    <td><%= donor.gender %></td>
+                    <td>
+                        <a href="/donors/<%= donor._id %>" title="View Donor">View</a>
+                        <a href="/donors/<%= donor._id %>/edit" title="Edit Donor">Edit</a>
+
+                        <form action="/donors/<%= donor._id %>?_method=DELETE" method="POST">
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this donor?')"
+                                title="Delete Donor">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
